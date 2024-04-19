@@ -48,10 +48,12 @@ resource "aws_instance" "ec2_instance" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   metadata_options {
     # Since we are fetching instance metadata from inside the instance.
-    http_tokens = "optional"
+    http_endpoint   = "enabled"
+    http_tokens     = "optional"
   }
   user_data = "${file("init.sh")}"
   tags = {
     Name  = "mlops-tf-instance"
+    Owner = var.tag_owner
   }
 }
