@@ -51,7 +51,7 @@ resource "aws_instance" "ec2_instance" {
     http_endpoint   = "enabled"
     http_tokens     = "optional"
   }
-  user_data = "${file("init.sh")}"
+  user_data = "${file("resources/init.sh")}"
   tags = {
     Name  = "mlops-tf-instance"
     Owner = var.tag_owner
